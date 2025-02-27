@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import M from "materialize-css";
-
+import { validateForm } from "./helpers";
 import axios from "axios";
 
 export default function QuizOptions() {
@@ -91,10 +91,10 @@ export default function QuizOptions() {
 
     console.log(selectedOptions, "<<options ");
 
-    if (!topic || !expertise || !numberOfQuestions || !style) {
-      setError("Please fill out all fields.");
-      return;
-    }
+    if (!validateForm(selectedOptions)) {
+    setError("Please fill out all fields.");
+    return;
+}
 
     console.log(topic, expertise, numberOfQuestions, style);
 
